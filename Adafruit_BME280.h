@@ -172,12 +172,12 @@ class Adafruit_BME280 {
         bool begin(uint8_t addr, TwoWire *theWire);
 		bool init();
 
-	void setSampling(sensor_mode mode              = MODE_NORMAL,
-			 sensor_sampling tempSampling  = SAMPLING_X16,
-			 sensor_sampling pressSampling = SAMPLING_X16,
-			 sensor_sampling humSampling   = SAMPLING_X16,
+	void setSampling(sensor_mode mode              = MODE_FORCED,
+			 sensor_sampling tempSampling  = SAMPLING_X1,
+			 sensor_sampling pressSampling = SAMPLING_X1,
+			 sensor_sampling humSampling   = SAMPLING_X1,
 			 sensor_filter filter          = FILTER_OFF,
-			 standby_duration duration     = STANDBY_MS_0_5
+			 standby_duration duration     = STANDBY_MS_1000
 			 );
                    
         void takeForcedMeasurement();
@@ -187,6 +187,7 @@ class Adafruit_BME280 {
         
         float readAltitude(float seaLevel);
         float seaLevelForAltitude(float altitude, float pressure);
+		void readPTHFast(int *pressure, int *temperature, int *humidity);
 
         
     private:
